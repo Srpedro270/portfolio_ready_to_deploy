@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ cv.name }} - CV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <img src="{{ url_for('static', filename='img/' + cv.photo) }}" alt="{{ cv.name }}" class="profile-pic">
+            <h1>{{ cv.name }}</h1>
+            <h2>{{ cv.title }}</h2>
+            <p class="location">📍 {{ cv.location }}</p>
+            
+            <div class="contact">
+                <a href="mailto:{{ cv.email }}" class="btn">📧 Email</a>
+                <a href="tel:{{ cv.phone_number }}" class="btn">📱 Call</a>
+                <a href="{{ cv.social.whatsapp }}" target="_blank" class="btn">💬 WhatsApp</a>
+            </div>
+
+            <div class="social-links">
+                <a href="{{ cv.social.github }}" target="_blank">GitHub</a>
+                <a href="{{ cv.social.linkedin }}" target="_blank">LinkedIn</a>
+            </div>
+
+            <!-- FORM DE FREELA -->
+            <div class="service-form">
+                <h3>Hire Me</h3>
+                <form action="/send_request" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Describe your project" required></textarea>
+                    <button type="submit">Send Request</button>
+                </form>
+            </div>
+        </aside>
+
+    <main class="content">
+    <section>
+        <h3>📝 About Me</h3>
+        <p>{{ cv.about }}</p>
+    </section>
+
+    <!-- Cada categoria do JSON vira um acordeão separado -->
+    {% for category, items in cv.skills.items() %}
+    <section>
+        <h3 class="accordion">{{ category }}</h3>
+        <div class="panel">
+            <ul>
+                {% for item in items %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    {% endfor %}
+
+    {% if cv.experience %}
+    <section>
+        <h3 class="accordion">💼 Experience</h3>
+        <div class="panel">
+            <ul>
+                {% for exp in cv.experience %}
+                    <li>
+                        <strong>{{ exp.position }}</strong> - {{ exp.period }}<br>
+                        {{ exp.description }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    {% endif %}
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var acc = document.getElementsByClassName("accordion");
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+});
+</script>

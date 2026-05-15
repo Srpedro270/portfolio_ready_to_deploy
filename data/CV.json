@@ -1,0 +1,71 @@
+{
+  "name": "Gustavo Silva",
+  "title": "Developer Junior",
+  "about": "I am a programming student and work as a junior developer on freelance projects in my spare time. I am passionate about excellence and committed to providing support throughout the entire development process — from the initial stages to delivery, as well as ongoing assistance after project completion.",
+  "email": "gustavo.pedro.dev27@outlook.com",
+  "phone_number": "+372 5827-9866",
+  "location": "Tartu, Estonia",
+  "photo": "profile-picture.png",
+
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/gustavo-silva-02b857405/",
+    "github": "https://github.com/Srpedro270?tab=repositories",
+    "whatsapp": "https://wa.me/32494778003"
+  },
+  
+
+  "skills" : {
+
+    "🛠 Technical Skills" : [
+      "Conditional statements (if / else)",
+      "Loops (for, while)",
+      "Writing and organizing custom functions",
+      "Functions as parameters and lambda expressions",
+      "List Comprehensions",
+      "String manipulation",
+      "Data structures: Lists, Tuples, Dictionaries, Iterables",
+      "Working with modules and libraries",
+      "Introduction to Object-Oriented Programming (OOP)",
+      "REST API integration and OAuth2/JWT authentication",
+      "Box API, CoinGecko API, Google Sheets API integration",
+      "File and image automation with os, pathlib, shutil, Pillow, EXIF",
+      "Key libraries: pandas, requests, boxsdk, python-dotenv, hashlib",
+      "Logging, duplicate control, and CSV/Excel report generation",
+      "Dry run workflows and data validation before production deploy"
+      ],
+
+    "📊 Data Analysis" : [
+      "NumPy for numerical operations and array handling",
+      "Pandas for data cleaning, manipulation, and analysis",
+      "Python + Excel integration (reading, processing, and exporting spreadsheets)"
+      ],
+
+    "🚀 What I Can Do for You" : [
+      "Custom Python scripts",
+      "Task and workflow automation",
+      "Data cleaning and organization",
+      "Excel automation using Python",
+      "API integrations and cloud file automation with Box API",
+      "Image processing and archive organization with EXIF metadata",
+      "Code debugging and improvement",
+      "Support for small projects and academic tasks"
+      ],
+
+    "💼 Professional Profile" : [
+      "Clean, readable, and well-structured code",
+      "Fast learner and adaptable",
+      "Clear communication and reliability",
+      "Focused on delivering on time and with quality",
+      "Recent experience with REST API integrations, JWT authentication, and cloud automation workflows for Box API"
+      ]
+  },
+
+  "experience": [
+    {
+      "position": "Projeto CV Flask",
+      "period": "Maio 2026",
+      "description": "Criando meu primeiro site com Flask e JSON"
+    }
+  ]
+}
+

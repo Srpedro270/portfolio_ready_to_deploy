@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f8;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 320px;
+    background: #2c3e50;
+    color: white;
+    padding: 30px 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #3498db;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.sidebar h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #bdc3c7;
+    margin-bottom: 15px;
+}
+
+.location {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #95a5a6;
+}
+
+.contact .btn {
+    display: block;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.contact .btn:hover {
+    background: #2980b9;
+}
+
+.social-links {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.social-links a {
+    color: #3498db;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.service-form {
+    margin-top: 30px;
+    border-top: 1px solid #34495e;
+    padding-top: 20px;
+}
+
+.service-form h3 {
+    margin-bottom: 15px;
+}
+
+.service-form input, 
+.service-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.service-form textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.service-form button {
+    width: 100%;
+    padding: 10px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.service-form button:hover {
+    background: #229954;
+}
+
+/* MAIN CONTENT */
+.content {
+    margin-left: 320px;
+    padding: 40px;
+    flex: 1;
+}
+
+.content section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.content h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.content ul {
+    list-style: none;
+}
+
+.content li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.content li:last-child {
+    border-bottom: none;
+}
+
+/* ACCORDION */
+.accordion {
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.accordion:hover {
+    color: #3498db;
+}
+
+.accordion:after {
+    content: '\002B'; /* + */
+    color: #3498db;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.accordion.active:after {
+    content: "\2212"; /* - */
+}
+
+.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.panel ul {
+    padding-top: 10px;
+}
