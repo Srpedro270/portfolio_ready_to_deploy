@@ -1,83 +1,402 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ cv.name }} - CV</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sidebar-width: 320px;
+            --sidebar-collapsed: 70px;
+            --accent-color: #3498db;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f8;
+        }
+
+      .dashboard {
+            display: block;
+            min-height: 100vh;
+        }
+
+        /* HAMBURGER - FORA DA SIDEBAR */
+      .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1002;
+        }
+
+      .hamburger span {
+            width: 100%;
+            height: 3px;
+            background: #1e3a5f;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+      .hamburger.active span {
+            background: white;
+        }
+
+      .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+      .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+      .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* SIDEBAR */
+      .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: var(--sidebar-width);
+            background: #1e3a5f;
+            color: white;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: translateX(0);
+        }
+
+      .sidebar-content {
+            padding: 80px 20px 30px 20px;
+        }
+
+        /* MAIN CONTENT */
+      .content {
+            display: block;
+            margin-left: var(--sidebar-width);
+            padding: 40px 20px;
+            transition: margin-left 0.3s ease;
+            max-width: 1000px;
+            width: auto;
+        }
+
+      .content section {
+            display: block;
+            width: 100%;
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* ELEMENTOS DA SIDEBAR */
+      .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            display: block;
+            margin: 0 auto 15px;
+            object-fit: cover;
+        }
+
+      .sidebar h1,.sidebar h2 {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+      .location {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+      .sidebar.contact.btn {
+            display: block;
+            background: var(--accent-color);
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+      .sidebar.contact.btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+      .social-links {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+      .social-links a {
+            color: #87ceeb;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+      .service-form {
+            margin-top: 30px;
+        }
+
+      .service-form input,.service-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+      .service-form button {
+            width: 100%;
+            padding: 10px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+      .service-form button:hover {
+            background: #2980b9;
+        }
+
+        /* ACORDEÃO */
+      .accordion {
+            cursor: pointer;
+            padding: 18px;
+            margin: 0;
+            border-bottom: 1px solid #eee;
+            transition: 0.4s;
+            user-select: none;
+        }
+
+      .accordion:after {
+            content: '+';
+            color: var(--accent-color);
+            font-weight: bold;
+            float: right;
+            font-size: 20px;
+        }
+
+      .accordion.active:after {
+            content: "−";
+        }
+
+      .panel {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+      .panel p {
+            padding: 15px 5px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+      .panel ul {
+            padding: 15px 5px 15px 20px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+      .project-card,.job {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+      .project-card h4 {
+            margin: 0 0 8px 0;
+            color: #2c3e50;
+        }
+
+      .btn-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+      .period {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* MOBILE */
+        @media (max-width: 1024px) {
+          .hamburger {
+                top: 15px;
+                left: 15px;
+            }
+
+          .hamburger span {
+                background: #1e3a5f;
+            }
+
+          .sidebar {
+                transform: translateX(-100%);
+            }
+
+          .sidebar.active {
+                transform: translateX(0);
+                box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+            }
+
+          .content {
+                margin-left: 0;
+                padding: 80px 15px 20px 15px;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- HAMBURGER FORA DA SIDEBAR -->
+    <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <div class="dashboard">
         <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <img src="{{ url_for('static', filename='img/' + cv.photo) }}" alt="{{ cv.name }}" class="profile-pic">
-            <h1>{{ cv.name }}</h1>
-            <h2>{{ cv.title }}</h2>
-            <p class="location">📍 {{ cv.location }}</p>
-            
-            <div class="contact">
-                <a href="mailto:{{ cv.email }}" class="btn">📧 Email</a>
-                <a href="tel:{{ cv.phone_number }}" class="btn">📱 Call</a>
-                <a href="{{ cv.social.whatsapp }}" target="_blank" class="btn">💬 WhatsApp</a>
-            </div>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-content">
+                <img src="{{ url_for('static', filename='img/' + cv.photo) }}" alt="{{ cv.name }}" class="profile-pic">
+                <h1>{{ cv.name }}</h1>
+                <h2>{{ cv.title }}</h2>
+                <p class="location">📍 {{ cv.location }}</p>
+                <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+                <div class="contact">
+                    <a href="mailto:{{ cv.email }}" class="btn">📧 Email</a>
+                    <a href="tel:{{ cv.phone_number }}" class="btn">📱 Call</a>
+                    <a href="{{ cv.social.whatsapp }}" target="_blank" class="btn">💬 WhatsApp</a>
+                </div>
 
-            <div class="social-links">
-                <a href="{{ cv.social.github }}" target="_blank">GitHub</a>
-                <a href="{{ cv.social.linkedin }}" target="_blank">LinkedIn</a>
-            </div>
+                <div class="social-links">
+                    <a href="{{ cv.social.github }}" target="_blank">GitHub</a>
+                    <a href="{{ cv.social.linkedin }}" target="_blank">LinkedIn</a>
+                </div>
 
-            <!-- FORM DE FREELA -->
-            <div class="service-form">
-                <h3>Hire Me</h3>
-                <form action="/send_request" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Describe your project" required></textarea>
-                    <button type="submit">Send Request</button>
-                </form>
+                <div class="service-form">
+                    <h3>Hire Me</h3>
+                    <form action="/send_request" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Describe your project" required></textarea>
+                        <button type="submit">Send Request</button>
+                    </form>
+                </div>
             </div>
         </aside>
 
-    <main class="content">
-    <section>
-        <h3>📝 About Me</h3>
-        <p>{{ cv.about }}</p>
-    </section>
+        <!-- CONTEÚDO PRINCIPAL - TUDO DENTRO DO MAIN -->
+        <main class="content" id="mainContent">
+            <section>
+                <h3 class="accordion">About Me</h3>
+                <div class="panel">
+                    <p>{{ cv.about }}</p>
+                </div>
+            </section>
 
-    <!-- Cada categoria do JSON vira um acordeão separado -->
-    {% for category, items in cv.skills.items() %}
-    <section>
-        <h3 class="accordion">{{ category }}</h3>
-        <div class="panel">
-            <ul>
-                {% for item in items %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </section>
-    {% endfor %}
+            {% if cv.skills %}
+            {% for category, items in cv.skills.items() %}
+            <section>
+                <h3 class="accordion">{{ category }}</h3>
+                <div class="panel">
+                    <ul>
+                        {% for item in items %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+            {% endfor %}
+            {% endif %}
 
-    {% if cv.experience %}
-    <section>
-        <h3 class="accordion">💼 Experience</h3>
-        <div class="panel">
-            <ul>
-                {% for exp in cv.experience %}
-                    <li>
-                        <strong>{{ exp.position }}</strong> - {{ exp.period }}<br>
+            {% if cv.projects %}
+            <section>
+                <h3 class="accordion">📁 Projects</h3>
+                <div class="panel">
+                    {% for project in cv.projects %}
+                    <div class="project-card">
+                        <h4>{{ project.name }}</h4>
+                        <p>{{ project.description }}</p>
+                        <p><strong>Tech:</strong> {{ project.tech|join(', ') }}</p>
+                        {% if project.github %}
+                        <a href="{{ project.github }}" target="_blank" class="btn-link">View on GitHub →</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endif %}
+
+            {% if cv.services %}
+            <section>
+                <h3 class="accordion">🚀 What I Can Do for You</h3>
+                <div class="panel">
+                    <ul>
+                        {% for service in cv.services %}
+                        <li>{{ service }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+            {% endif %}
+
+            {% if cv.experience %}
+            <section>
+                <h3 class="accordion">💼 Experience</h3>
+                <div class="panel">
+                    {% for exp in cv.experience %}
+                    <div class="job">
+                        <strong>{{ exp.position }}</strong> - <span class="period">{{ exp.period }}</span><br>
                         {{ exp.description }}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </section>
-    {% endif %}
-</main>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endif %}
+        </main>
+    </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // ACORDEÃO
     var acc = document.getElementsByClassName("accordion");
     for (var i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
@@ -90,5 +409,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // HAMBURGER
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        hamburger.classList.toggle('active');
+        sidebar.classList.toggle('active');
+    });
+
+    // Fecha no mobile ao clicar fora
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1024 &&
+          !sidebar.contains(e.target) &&
+          !hamburger.contains(e.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+    });
+
+    // Fecha no mobile ao clicar num link
+    document.querySelectorAll('.sidebar a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    });
 });
 </script>
+</body>
+</html>

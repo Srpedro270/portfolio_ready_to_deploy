@@ -1,7 +1,7 @@
 {
   "name": "Gustavo Silva",
   "title": "Developer Junior",
-  "about": "I am a programming student and work as a junior developer on freelance projects in my spare time. I am passionate about excellence and committed to providing support throughout the entire development process — from the initial stages to delivery, as well as ongoing assistance after project completion.",
+  "about": "Programming student and junior Python developer building real-world projects with Flask, Streamlit, and Pandas. I focus on writing clean, maintainable code and automating data workflows from concept to deployment. Currently applying my skills to freelance work and academic projects, with emphasis on end-to-end development and post-delivery support.",
   "email": "gustavo.pedro.dev27@outlook.com",
   "phone_number": "+372 5827-9866",
   "location": "Tartu, Estonia",
@@ -14,58 +14,87 @@
   },
   
 
-  "skills" : {
-
-    "🛠 Technical Skills" : [
-      "Conditional statements (if / else)",
-      "Loops (for, while)",
-      "Writing and organizing custom functions",
-      "Functions as parameters and lambda expressions",
-      "List Comprehensions",
-      "String manipulation",
-      "Data structures: Lists, Tuples, Dictionaries, Iterables",
-      "Working with modules and libraries",
-      "Introduction to Object-Oriented Programming (OOP)",
-      "REST API integration and OAuth2/JWT authentication",
-      "Box API, CoinGecko API, Google Sheets API integration",
-      "File and image automation with os, pathlib, shutil, Pillow, EXIF",
-      "Key libraries: pandas, requests, boxsdk, python-dotenv, hashlib",
-      "Logging, duplicate control, and CSV/Excel report generation",
-      "Dry run workflows and data validation before production deploy"
-      ],
-
-    "📊 Data Analysis" : [
-      "NumPy for numerical operations and array handling",
-      "Pandas for data cleaning, manipulation, and analysis",
-      "Python + Excel integration (reading, processing, and exporting spreadsheets)"
-      ],
-
-    "🚀 What I Can Do for You" : [
-      "Custom Python scripts",
-      "Task and workflow automation",
-      "Data cleaning and organization",
-      "Excel automation using Python",
-      "API integrations and cloud file automation with Box API",
-      "Image processing and archive organization with EXIF metadata",
-      "Code debugging and improvement",
-      "Support for small projects and academic tasks"
-      ],
-
-    "💼 Professional Profile" : [
-      "Clean, readable, and well-structured code",
-      "Fast learner and adaptable",
-      "Clear communication and reliability",
-      "Focused on delivering on time and with quality",
-      "Recent experience with REST API integrations, JWT authentication, and cloud automation workflows for Box API"
-      ]
-  },
+"skills": {
+  "💻 Python Core": [
+    "Variables, Data Types, Operators",
+    "Conditionals - if/else/elif", 
+    "Loops - for/while",
+    "Data Structures - Lists, Tuples, Dicts, Sets",
+    "Functions, Lambda, List Comprehension",
+    "Modules & Libraries",
+    "Object-Oriented Programming - OOP basics"
+  ],
+  "⚙️ Web Development": [
+    "Flask - REST APIs, Routing, Jinja2 Templates",
+    "Streamlit - Interactive data dashboards",
+    "HTML5 & CSS3 - Responsive design",
+    "Gunicorn - WSGI server for production"
+  ],
+  "📊 Data & Automation": [
+    "Pandas - Data cleaning, analysis & manipulation",
+    "NumPy - Numerical operations",
+    "OpenPyXL - Python + Excel integration",
+    "Selenium - Web automation & scraping",
+    "Matplotlib - Data visualization"
+  ],
+  "📧 APIs & Integration": [
+    "Requests - API consumption & integration",
+    "Box API - Cloud file automation",
+    "smtplib - Email automation",
+    "JSON/CSV/TXT - File processing"
+  ],
+  "🗄️ Databases": [
+    "SQL - Queries, JOINs, Aggregations",
+    "SQLite", 
+    "PostgreSQL"
+  ],
+  "🚀 DevOps/Deploy": [
+    "Git & GitHub - Version control",
+    "Render/Railway - Cloud deployment",
+    "dotenv - Environment variables"
+  ]
+},
 
   "experience": [
-    {
-      "position": "Projeto CV Flask",
-      "period": "Maio 2026",
-      "description": "Criando meu primeiro site com Flask e JSON"
-    }
-  ]
+  {
+    "position": "Python Developer - Freelancer",
+    "period": "2025 - Present",
+    "description": "Developed full-stack web applications using Flask and interactive dashboards with Streamlit. Automated data workflows with Pandas, Selenium and OpenPyXL, including Excel report generation. Built API integrations using Requests and Box API. Implemented email systems with smtplib. Deployed applications to Render using Gunicorn."
+  }
+],
+
+"projects": [
+  {
+    "name": "Portfolio Website with Flask",
+    "description": "Responsive portfolio with Jinja2 templating, contact form using smtplib, and deployment on Render",
+    "tech": ["Flask", "Jinja2", "smtplib", "Gunicorn", "HTML/CSS"],
+    "github": "https://github.com/Srpedro270/portfolio"
+  },
+  {
+    "name": "Crypto Dashboard with Streamlit", 
+    "description": "Real-time cryptocurrency dashboard consuming APIs with Requests library, data processing with Pandas and interactive charts",
+    "tech": ["Streamlit", "Requests", "Pandas", "APIs"],
+    "github": "https://github.com/Srpedro270/crypto_dashboard"
+  },
+  {
+    "name": "Web Automation with Selenium",
+    "description": "Automated browser tasks and data extraction scripts for repetitive workflows",
+    "tech": ["Selenium", "Python", "Web Scraping"],
+    "github": "https://github.com/Srpedro270/coleta-de-dados-livros-online"
+  }
+],
+
+"services": [
+  "Custom Flask web applications",
+  "Interactive Streamlit dashboards", 
+  "Data cleaning and analysis with Pandas",
+  "Excel automation and report generation",
+  "API integrations - REST, Box API, Crypto APIs",
+  "Web scraping and automation with Selenium",
+  "Email automation systems",
+  "Task and workflow automation",
+  "Code debugging and optimization",
+  "Support for academic and small business projects"
+]
 }
 
