@@ -2,38 +2,46 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-def send_hire_email(name, email, project):
-    remetente = os.getenv('EMAIL_USER')  # teu outlook
-    senha = os.getenv('EMAIL_PASS')      # senha de app do outlook
-    destinatario = 'gustavo.pedro.dev27@outlook.com' # tu mesmo
-
-    # Monta o email
-    msg = MIMEMultipart()
-    msg['From'] = remetente
-    msg['To'] = destinatario
-    msg['Subject'] = f'Novo contato via Portfolio - {name}'
-
+def send_email_gmail(assunto, nome, email_cliente, mensagem):
+    user = os.getenv('GMAIL_USER')
+    password = os.getenv('GMAIL_PASS')
+    
+    print(f"[DEBUG] Vai usar: {user}")
+    
     corpo = f"""
-    Novo projeto pelo site:
+Novo contato pelo site:
 
-    Nome: {name}
-    Email: {email}
-    Projeto: {project}
+Nome: {nome}
+Email: {email_cliente}
+Mensagem:
+{mensagem}
     """
+    
+    msg = MIMEMultipart()
+    msg['From'] = user
+    msg['To'] = user
+    msg['Reply-To'] = email_cliente
+    msg['Subject'] = assunto
     msg.attach(MIMEText(corpo, 'plain'))
 
     try:
-        # Conecta no Outlook
-        server = smtplib.SMTP('smtp-mail.outlook.com', 587)
+        print("[DEBUG] Conectando...")
+        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=60)
+        print("[DEBUG] EHLO...")
+        server.ehlo()
+        print("[DEBUG] STARTTLS...")
         server.starttls()
-        server.login(remetente, senha)
-        server.sendmail(remetente, destinatario, msg.as_string())
+        print("[DEBUG] Login...")
+        server.login(user, password)
+        print("[DEBUG] Login OK! Enviando...")
+        server.sendmail(user, user, msg.as_string())
         server.quit()
+        print(">>> SUCESSO: Gmail aceitou o email <<<")
         return True
+    except smtplib.SMTPAuthenticationError as e:
+        print(f">>> ERRO AUTH: Senha errada ou não é App Password. {e}")
+        return False
     except Exception as e:
-        print(f"Erro ao enviar email: {e}")
+        print(f">>> ERRO GERAL: {type(e).__name__}: {e}")
         return False
