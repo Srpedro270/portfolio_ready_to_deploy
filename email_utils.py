@@ -7,6 +7,10 @@ def send_email_gmail(assunto, nome, email_cliente, mensagem):
     user = os.getenv('GMAIL_USER')
     password = os.getenv('GMAIL_PASS')
     
+    if not user or not password:
+        print(">>> ERRO: GMAIL_USER ou GMAIL_PASS não configurado no Render")
+        return False
+    
     print(f"[DEBUG] Vai usar: {user}")
     
     corpo = f"""
@@ -26,17 +30,12 @@ Mensagem:
     msg.attach(MIMEText(corpo, 'plain'))
 
     try:
-        print("[DEBUG] Conectando...")
-        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=60)
-        print("[DEBUG] EHLO...")
-        server.ehlo()
-        print("[DEBUG] STARTTLS...")
-        server.starttls()
-        print("[DEBUG] Login...")
-        server.login(user, password)
-        print("[DEBUG] Login OK! Enviando...")
-        server.sendmail(user, user, msg.as_string())
-        server.quit()
+        print("[DEBUG] Conectando via SSL 465...")
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=60) as server:
+            print("[DEBUG] Login...")
+            server.login(user, password)
+            print("[DEBUG] Login OK! Enviando...")
+            server.sendmail(user, user, msg.as_string())
         print(">>> SUCESSO: Gmail aceitou o email <<<")
         return True
     except smtplib.SMTPAuthenticationError as e:
