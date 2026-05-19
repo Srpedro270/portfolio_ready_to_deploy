@@ -1,18 +1,14 @@
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 import os
+import resend
 
 def send_email_gmail(assunto, nome, email_cliente, mensagem):
-    user = os.getenv('GMAIL_USER')
-    password = os.getenv('GMAIL_PASS')
-    
-    if not user or not password:
-        print(">>> ERRO: GMAIL_USER ou GMAIL_PASS não configurado no Render")
+    resend.api_key = os.getenv('RESEND_API_KEY')
+    user = os.getenv('GMAIL_USER') # seu gmail pra receber
+
+    if not resend.api_key or not user:
+        print(">>> ERRO: RESEND_API_KEY ou GMAIL_USER não configurado <<<")
         return False
-    
-    print(f"[DEBUG] Vai usar: {user}")
-    
+
     corpo = f"""
 Novo contato pelo site:
 
@@ -21,26 +17,18 @@ Email: {email_cliente}
 Mensagem:
 {mensagem}
     """
-    
-    msg = MIMEMultipart()
-    msg['From'] = user
-    msg['To'] = user
-    msg['Reply-To'] = email_cliente
-    msg['Subject'] = assunto
-    msg.attach(MIMEText(corpo, 'plain'))
 
     try:
-        print("[DEBUG] Conectando via SSL 465...")
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=60) as server:
-            print("[DEBUG] Login...")
-            server.login(user, password)
-            print("[DEBUG] Login OK! Enviando...")
-            server.sendmail(user, user, msg.as_string())
-        print(">>> SUCESSO: Gmail aceitou o email <<<")
+        params = {
+            "from": "Portfolio <onboarding@resend.dev>",
+            "to": [user],
+            "reply_to": email_cliente,
+            "subject": assunto,
+            "text": corpo,
+        }
+        email = resend.Emails.send(params)
+        print(f">>> SUCESSO: Resend ID {email['id']} <<<")
         return True
-    except smtplib.SMTPAuthenticationError as e:
-        print(f">>> ERRO AUTH: Senha errada ou não é App Password. {e}")
-        return False
     except Exception as e:
-        print(f">>> ERRO GERAL: {type(e).__name__}: {e}")
+        print(f">>> ERRO RESEND: {e}")
         return False
