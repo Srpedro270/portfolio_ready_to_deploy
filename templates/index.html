@@ -22,13 +22,13 @@
             background: #f4f6f8;
         }
 
-      .dashboard {
+     .dashboard {
             display: block;
             min-height: 100vh;
         }
 
         /* HAMBURGER - FORA DA SIDEBAR */
-      .hamburger {
+     .hamburger {
             position: fixed;
             top: 20px;
             left: 20px;
@@ -44,7 +44,7 @@
             z-index: 1002;
         }
 
-      .hamburger span {
+     .hamburger span {
             width: 100%;
             height: 3px;
             background: #1e3a5f;
@@ -52,22 +52,22 @@
             transition: all 0.3s ease;
         }
 
-      .hamburger.active span {
+     .hamburger.active span {
             background: white;
         }
 
-      .hamburger.active span:nth-child(1) {
+     .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
         }
-      .hamburger.active span:nth-child(2) {
+     .hamburger.active span:nth-child(2) {
             opacity: 0;
         }
-      .hamburger.active span:nth-child(3) {
+     .hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* SIDEBAR */
-      .sidebar {
+     .sidebar {
             position: fixed;
             left: 0;
             top: 0;
@@ -82,12 +82,12 @@
             transform: translateX(0);
         }
 
-      .sidebar-content {
+     .sidebar-content {
             padding: 80px 20px 30px 20px;
         }
 
         /* MAIN CONTENT */
-      .content {
+     .content {
             display: block;
             margin-left: var(--sidebar-width);
             padding: 40px 20px;
@@ -96,7 +96,7 @@
             width: auto;
         }
 
-      .content section {
+     .content section {
             display: block;
             width: 100%;
             background: white;
@@ -106,7 +106,7 @@
         }
 
         /* ELEMENTOS DA SIDEBAR */
-      .profile-pic {
+     .profile-pic {
             width: 120px;
             height: 120px;
             border-radius: 50%;
@@ -116,51 +116,68 @@
             object-fit: cover;
         }
 
-      .sidebar h1,.sidebar h2 {
+     .sidebar h1,.sidebar h2 {
             text-align: center;
             margin: 5px 0;
         }
 
-      .location {
+     .location {
             text-align: center;
             margin-bottom: 20px;
         }
 
-      .sidebar.contact.btn {
-            display: block;
-            background: var(--accent-color);
-            color: white;
-            padding: 12px;
-            margin: 10px 0;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: 0.3s;
+     .contact {
+            margin: 25px 0;
+            padding: 0 5px;
         }
 
-      .sidebar.contact.btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+     .contact a.btn,
+     .contact a.btn:link,
+     .contact a.btn:visited {
+            display: block!important;
+            background: var(--accent-color)!important;
+            color: #ffffff!important;
+            padding: 12px 16px!important;
+            margin: 10px 0!important;
+            text-align: center!important;
+            text-decoration: none!important;
+            border-radius: 6px!important;
+            font-weight: 600!important;
+            font-size: 15px!important;
+            transition: all 0.3s ease!important;
+            border: 2px solid var(--accent-color)!important;
+            width: 100%!important;
+            box-sizing: border-box!important;
         }
 
-      .social-links {
+     .contact a.btn:hover {
+            background: transparent!important;
+            color: var(--accent-color)!important;
+            transform: translateY(-2px)!important;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3)!important;
+        }
+
+     .contact a.btn:active {
+            transform: translateY(0)!important;
+        }
+
+     .social-links {
             text-align: center;
             margin: 25px 0;
         }
 
-      .social-links a {
+     .social-links a {
             color: #87ceeb;
             margin: 0 12px;
             text-decoration: none;
             font-weight: 600;
         }
 
-      .service-form {
+     .service-form {
             margin-top: 30px;
         }
 
-      .service-form input,.service-form textarea {
+     .service-form input,.service-form textarea {
             width: 100%;
             padding: 8px;
             margin: 5px 0;
@@ -170,7 +187,7 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-      .service-form button {
+     .service-form button {
             width: 100%;
             padding: 10px;
             background: var(--accent-color);
@@ -182,12 +199,12 @@
             transition: 0.3s;
         }
 
-      .service-form button:hover {
+     .service-form button:hover {
             background: #2980b9;
         }
 
         /* ACORDEÃO */
-      .accordion {
+     .accordion {
             cursor: pointer;
             padding: 18px;
             margin: 0;
@@ -196,7 +213,7 @@
             user-select: none;
         }
 
-      .accordion:after {
+     .accordion:after {
             content: '+';
             color: var(--accent-color);
             font-weight: bold;
@@ -204,30 +221,30 @@
             font-size: 20px;
         }
 
-      .accordion.active:after {
+     .accordion.active:after {
             content: "−";
         }
 
-      .panel {
+     .panel {
             padding: 0 18px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
 
-      .panel p {
+     .panel p {
             padding: 15px 5px;
             line-height: 1.7;
             color: #555;
         }
 
-      .panel ul {
+     .panel ul {
             padding: 15px 5px 15px 20px;
             line-height: 1.7;
             color: #555;
         }
 
-      .project-card,.job {
+     .project-card,.job {
             background: #f8f9fa;
             padding: 15px;
             border-radius: 8px;
@@ -235,12 +252,12 @@
             border-left: 3px solid var(--accent-color);
         }
 
-      .project-card h4 {
+     .project-card h4 {
             margin: 0 0 8px 0;
             color: #2c3e50;
         }
 
-      .btn-link {
+     .btn-link {
             display: inline-block;
             margin-top: 8px;
             color: var(--accent-color);
@@ -248,7 +265,7 @@
             font-weight: 600;
         }
 
-      .period {
+     .period {
             font-size: 14px;
             color: #666;
             font-style: italic;
@@ -256,25 +273,25 @@
 
         /* MOBILE */
         @media (max-width: 1024px) {
-          .hamburger {
+         .hamburger {
                 top: 15px;
                 left: 15px;
             }
 
-          .hamburger span {
+         .hamburger span {
                 background: #1e3a5f;
             }
 
-          .sidebar {
+         .sidebar {
                 transform: translateX(-100%);
             }
 
-          .sidebar.active {
+         .sidebar.active {
                 transform: translateX(0);
                 box-shadow: 5px 0 15px rgba(0,0,0,0.3);
             }
 
-          .content {
+         .content {
                 margin-left: 0;
                 padding: 80px 15px 20px 15px;
                 width: 100%;
@@ -301,7 +318,6 @@
                 <p class="location">📍 {{ cv.location }}</p>
                 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
                 <div class="contact">
-                    <a href="mailto:{{ cv.email }}" class="btn">📧 Email</a>
                     <a href="tel:{{ cv.phone_number }}" class="btn">📱 Call</a>
                     <a href="{{ cv.social.whatsapp }}" target="_blank" class="btn">💬 WhatsApp</a>
                 </div>
@@ -423,8 +439,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fecha no mobile ao clicar fora
     document.addEventListener('click', function(e) {
         if (window.innerWidth <= 1024 &&
-          !sidebar.contains(e.target) &&
-          !hamburger.contains(e.target) &&
+         !sidebar.contains(e.target) &&
+         !hamburger.contains(e.target) &&
             sidebar.classList.contains('active')) {
             sidebar.classList.remove('active');
             hamburger.classList.remove('active');
