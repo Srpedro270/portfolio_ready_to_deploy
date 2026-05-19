@@ -2,9 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 import os
 from email_utils import send_email_gmail
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = Flask(__name__)
 
