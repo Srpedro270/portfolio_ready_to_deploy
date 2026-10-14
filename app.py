@@ -3,6 +3,7 @@ import json
 import os
 from email_utils import send_email_gmail
 
+
 app = Flask(__name__)
 
 @app.route("/")
